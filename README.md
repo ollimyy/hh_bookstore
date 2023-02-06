@@ -1,1 +1,1 @@
-This is a project for learning Backend programming with Spring.
+This is work in progress project for learning Backend programming with Spring.
