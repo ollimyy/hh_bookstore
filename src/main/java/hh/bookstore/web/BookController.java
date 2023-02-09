@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
 @Controller
 public class BookController {
 
@@ -35,11 +37,19 @@ public class BookController {
 		return "addbook";
 	}
 
-	//save a new book to the database
+	//update or add a book in the database
 	@PostMapping("/save")
 	public String save(Book newBook) {
 		repository.save(newBook);
 		return "redirect:booklist";
+	}
+
+	// pass the book we want to edit to the edit book template
+	@GetMapping("/edit/{id}")
+	public String editStudent(@PathVariable("id") Long bookId, Model model) {
+		Book bookToEdit = repository.findById(bookId).get(); //TODO: error message when book not found
+		model.addAttribute("book", bookToEdit);
+		return "editbook";
 	}
 
 	@GetMapping("delete/{id}")
