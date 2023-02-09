@@ -20,7 +20,7 @@ public class BookstoreApplication {
 	public CommandLineRunner demo(BookRepository repository) {
 		return (args) -> {
 			Book scrooge = new Book("The Life and Times of Scrooge McDuck", "Don Rosa", 2007, "978-0911903966", 82.41);
-			Book hitchhiker = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1995, "9780345391803", 9.80);
+			Book hitchhiker = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1995, "978-0345391803", 9.80);
 			repository.save(scrooge);
 			repository.save(hitchhiker);
 		};
