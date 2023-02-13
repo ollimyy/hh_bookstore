@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore</title>
+</head>
+<body>
+<h2>Add a category</h2>
+<form th:object=" ${ category }" th:action="@{./savecategory}" action="#" method="post">
+    <label for="name">Name:</label>
+    <input id="name" type="text" th:field="${category.name}" />
+    <input type="submit" value="Save" />
+</form>
+</body>
+</html>

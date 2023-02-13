@@ -10,7 +10,7 @@ public class Book {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long bookId;
 	private String title;
 	private String author;
 	private int releaseYear;
@@ -30,12 +30,12 @@ public class Book {
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getId() {
-		return id;
+	public long getBookId() {
+		return bookId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setBookId(long id) {
+		this.bookId = id;
 	}
 
 	public String getTitle() {

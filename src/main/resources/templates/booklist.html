@@ -22,11 +22,11 @@
             <td th:text="${ book.releaseYear }">Year</td>
             <td th:text="${ book.isbn }">ISBN</td>
             <td th:text="${ book.price }">Price</td>
-            <td> <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-secondary"> Edit </a> </td>
-            <td> <a th:href="@{/delete/{id}(id=${book.id})}"  class="btn btn-danger"> Delete </a> </td>
+            <td> <a th:href="@{/editbook/{id}(id=${book.bookId})}" class="btn btn-secondary"> Edit </a> </td>
+            <td> <a th:href="@{/deletebook/{id}(id=${book.bookId})}" class="btn btn-danger"> Delete </a> </td>
         </tr>
     </th:block>
 </table>
-<a href="/add" class="btn btn-success">Add a book</a>
+<a href="/addbook" class="btn btn-success">Add</a>
 </body>
 </html>

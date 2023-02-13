@@ -7,10 +7,10 @@
 </head>
 <body>
 <h2>Edit a book</h2>
-<form th:object="${ book }" th:action="@{../save}" action="#" method="post">
+<form th:object="${ book }" th:action="@{../savebook}" action="#" method="post">
     <!-- id is required so we don't save a new book -->
     <label for="id"></label>
-    <input type="hidden" id="id" th:field="${book.id}"/>
+    <input type="hidden" id="id" th:field="${book.bookId}"/>
     <label for="title">Title:</label>
     <input type="text" id="title" th:value="${book.title}" th:field="${book.title}" />
     <br />
