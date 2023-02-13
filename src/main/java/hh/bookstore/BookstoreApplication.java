@@ -24,15 +24,18 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository bookRepo, CategoryRepository categoryRepo) {
 		return (args) -> {
+			// categories
+			Category comics = new Category("Comics");
+			Category scifi = new Category("Scifi");
+			categoryRepo.save(comics);
+			categoryRepo.save(scifi);
+
 			//books
-			Book scrooge = new Book("The Life and Times of Scrooge McDuck", "Don Rosa", 2007, "978-0911903966", 82.41);
-			Book hitchhiker = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1995, "978-0345391803", 9.80);
+			Book scrooge = new Book("The Life and Times of Scrooge McDuck", "Don Rosa", 2007, "978-0911903966", 82.41, comics);
+			Book hitchhiker = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1995, "978-0345391803", 9.80, scifi);
 			bookRepo.save(scrooge);
 			bookRepo.save(hitchhiker);
 
-			// categories
-			categoryRepo.save(new Category("Comics"));
-			categoryRepo.save(new Category("Scifi"));
 
 
 			log.info("fetch all categories");

@@ -1,9 +1,6 @@
 package hh.bookstore.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -16,18 +13,23 @@ public class Book {
 	private int releaseYear;
 	private String isbn;
 	private double price;
-	
-	public Book(String title, String author, int releaseYear, String isbn, double price) {
-		super();
+
+	@ManyToOne
+	@JoinColumn(name = "categoryId")
+	private Category category;
+
+
+	public Book(String title, String author, int releaseYear, String isbn, double price, Category category) {
 		this.title = title;
 		this.author = author;
 		this.releaseYear = releaseYear;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 
 	public Book() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public long getBookId() {
@@ -68,8 +70,24 @@ public class Book {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", year=" + releaseYear + ", isbn=" + isbn + ", price=" + price + "]";
+		return "Book{" +
+				"bookId=" + bookId +
+				", title='" + title + '\'' +
+				", author='" + author + '\'' +
+				", releaseYear=" + releaseYear +
+				", isbn='" + isbn + '\'' +
+				", price=" + price +
+				", category=" + category +
+				'}';
 	}
 }
