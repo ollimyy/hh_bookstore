@@ -41,6 +41,7 @@ public class Category {
         this.name = name;
     }
 
+    // no list type variables to toString otherwise infinite loop
     @Override
     public String toString() {
         return "Category{" +

@@ -23,7 +23,7 @@
             <td th:text="${ book.releaseYear }">Year</td>
             <td th:text="${ book.isbn }">ISBN</td>
             <td th:text="${ book.price }">Price</td>
-            <td th:text="${ book.category.name }">Category</td>
+            <td th:text="${ book.category } ? ${book.category.name} : ' '">Category</td>
             <td> <a th:href="@{/editbook/{id}(id=${book.bookId})}" class="btn btn-secondary"> Edit </a> </td>
             <td> <a th:href="@{/deletebook/{id}(id=${book.bookId})}" class="btn btn-danger"> Delete </a> </td>
         </tr>

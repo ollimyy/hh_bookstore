@@ -2,6 +2,7 @@ package hh.bookstore.web;
 
 import hh.bookstore.domain.Book;
 import hh.bookstore.domain.BookRepository;
+import hh.bookstore.domain.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,10 @@ public class BookController {
 
 	@Autowired //inject repository instance
 	private BookRepository bookRepo;
+
+	@Autowired
+	private CategoryRepository categoryRepo;
+
 	@GetMapping("/index")
 	public String sayGreetings() {
 		return "index";
@@ -30,6 +35,7 @@ public class BookController {
 	@GetMapping("/addbook")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", categoryRepo.findAll()); //also add all categories to template
 		return "addbook";
 	}
 
