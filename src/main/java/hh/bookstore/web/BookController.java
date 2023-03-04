@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class BookController {
@@ -29,6 +32,17 @@ public class BookController {
 		// get all books from database and add them as an attribute to the template
 		model.addAttribute("books", bookRepo.findAll());
 		return "booklist"; //booklist.html
+	}
+
+	//RESTful service to get all books
+	@GetMapping("/books")
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) bookRepo.findAll();
+	}
+
+	@GetMapping("/book/{id}")
+	public @ResponseBody Book findBookRest(@PathVariable("id") Long bookId) {
+		return bookRepo.findById(bookId).get();
 	}
 
 	//create an empty book object, add it to the model and redirect to a form for adding a book
