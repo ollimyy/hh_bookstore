@@ -4,6 +4,7 @@ import hh.bookstore.domain.Book;
 import hh.bookstore.domain.BookRepository;
 import hh.bookstore.domain.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +43,7 @@ public class BookController {
 
 	@GetMapping("/book/{id}")
 	public @ResponseBody Book findBookRest(@PathVariable("id") Long bookId) {
-		return bookRepo.findById(bookId).get();
+		return bookRepo.findById(bookId).get(); //TODO: error message when book not found
 	}
 
 	//create an empty book object, add it to the model and redirect to a form for adding a book
@@ -69,7 +70,8 @@ public class BookController {
 	}
 
 	@GetMapping("deletebook/{id}")
-	public String deleteStudent(@PathVariable("id") Long bookId, Model model) {
+	@PreAuthorize("hasRole('ADMIN')") // only admin can delete books
+	public String deleteStudent(@PathVariable("id") Long bookId) {
 		bookRepo.deleteById(bookId);
 		return "redirect:../booklist";
 	}

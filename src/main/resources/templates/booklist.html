@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,12 @@
 </head>
 <body>
 <h1>Books</h1>
+<div>
+    <h3>Welcome <span sec:authentication="name"></span></h3>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign out">
+    </form>
+</div>
 <table class="table table-striped">
     <tr>
         <th>Title</th>
@@ -25,7 +31,7 @@
             <td th:text="${ book.price }">Price</td>
             <td th:text="${ book.category } ? ${book.category.name} : ' '">Category</td>
             <td> <a th:href="@{/editbook/{id}(id=${book.bookId})}" class="btn btn-secondary"> Edit </a> </td>
-            <td> <a th:href="@{/deletebook/{id}(id=${book.bookId})}" class="btn btn-danger"> Delete </a> </td>
+            <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/deletebook/{id}(id=${book.bookId})}" class="btn btn-danger"> Delete </a> </td>
         </tr>
     </th:block>
 </table>
